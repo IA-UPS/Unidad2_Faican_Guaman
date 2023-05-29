@@ -1,0 +1,161 @@
+---
+title: "Resumen Redes Bayesianas"
+author: "Evelyn Faican - Alex Guaman"
+format: pdf
+editor: visual
+---
+
+## **LAS REDES BAYESIANAS**
+
+Las redes bayesianas representan un conjunto de variables aleatorias que se relacionan entre ellas, la estructura de las redes nos permite expresar la función de probabilidad conjunta de estas variables como un producto de funciones de probabilidad condicional generalmente más simples. Este enfoque es una buena estrategia para lidiar con problemas relacionados con la incertidumbre donde las inferencias no pueden extraerse únicamente del conocimiento previo del problema. Es importante recalcar que las redes bayesianas son los gráficos más populares ya que tiene una gran diferencia con los otros modelos y está en que sus arcos son dirigidos y representan dependencia condicional entre las variables.
+
+## ¿Que son las redes bayesianas ?
+
+1.  Las redes bayesianas (también conocidas como redes causales probabilísticas, redes de causalidad, sistemas expertos bayesianos, redes de creencias, sistemas expertos probabilísticos y diagramas de influencia) se basan en relaciones de independencia condicional que se establecen entre ellas para identificar las relacionadas.
+
+2.  La estructura de las redes bayesianas proporciona información sobre dependencias e independencia condicional entre variables. Estas relaciones simplifican la expresión de la función de probabilidad conjunta como el producto de las funciones de probabilidad condicional de cada variable.
+
+3.  Es importante señalar que la topología o estructura de una red proporciona información no solo sobre las dependencias probabilísticas entre variables, sino también sobre la independencia condicional de una variable o conjunto de variables en otra u otras variables. Cada variable es independiente en el gráfico de las variables que no son sus descendientes debido al estado de la variable principal.
+
+4.   Al incluir la independencia en la estructura del propio gráfico, las redes bayesianas son excelentes herramientas para expresar el conocimiento de forma compacta (reduciendo el número de parámetros requeridos). Además, proporciona métodos de razonamiento flexibles basados ​​en la propagación de probabilidades a través de redes de acuerdo con las leyes de la teoría de la probabilidad.
+
+## INTERFERENCIA 
+
+A partir de la red ya construida y dados los valores específicos de algunas variables de instancia, se podría intentar estimar los valores de otras variables de la misma instancia aplicando razonamiento probabilístico. El razonamiento probabilístico en redes bayesianas consiste en propagar los efectos de evidencia (variables conocidas) a través de la red para determinar las probabilidades posteriores de variables desconocidas. Así, en base a las probabilidades derivadas, se puede determinar un valor estimado para las variables especificadas.
+
+-    En general, una red se puede utilizar para calcular la distribución de probabilidad de cualquier subconjunto de variables, dados los valores de cualquier subconjunto de las demás.
+
+-   El mecanismo de inferencia de las redes bayesianas le permite utilizarlas para crear clasificadores. Para ello, es necesario construir una red bayesiana en la que la clase y los atributos sean variables interconectadas en el diagrama.
+
+**CLASIFICADORES BAYESIANOS**
+
+Un clasificador es una función que asigna el valor de un atributo, llamado clase, a instancias o entidades descritas por un conjunto de atributos, cuando se construye una red bayesiana para predecir el valor de una variable de clase dada cualquier configuración de las otras variables, tenemos un "clasificador bayesiano".
+
+**Los clasificadores bayesianos se usan comúnmente porque tienen ciertas ventajas:**
+
+1.  Generalmente son fáciles de crear y comprender.
+
+2.  Las inducciones de estos clasificadores son extremadamente rápidas y requieren solo un paso.
+
+3.  Esto es muy fiable teniendo en cuenta los atributos irrelevantes.
+
+4.  Usa la evidencia de muchos atributos para hacer una predicción definitiva.
+
+**Para aprender sobre las redes bayesianas se dividido en dos partes:**
+
+-   **Aprendizaje Estructural:** Identificar la estructura de la red.
+
+-   **Aprendizaje Paramétrico:** Conociendo la estructura del diagrama, encontrar las probabilidades para cada nodo.
+
+#### **Aprendizaje paramétrico**
+
+Aprender sobre los parámetros es fácil cuando todas las variables en el conjunto de entrenamiento son completamente observables, el método más común es lo que se conoce como estimación de máxima verosimilitud, que consiste simplemente en estimar las probabilidades deseadas a partir de la frecuencia de entrenamiento de los valores de los datos, similar al Naive Bayes.
+
+La calidad de estas estimaciones depende de la disponibilidad de suficientes datos en la muestra. Si esto no es posible, se puede cuantificar a la incertidumbre representándola con una distribución de probabilidad para que se tenga en cuenta de forma explícita a la hora de determinar las probabilidades.
+
+-    Las distribuciones beta se usan comúnmente con variables binarias, mientras que las distribuciones de Dirichlet se usan con variables de valores múltiples. Esta aproximación es útil cuando tiene asistencia de expertos en la materia para especificar valores para los parámetros de distribución.
+
+-   Cuando hay variables continuas, la estrategia más común es discretizarlas antes de crear un modelo estructural.
+
+#### **Aprendizaje estructural**
+
+El aprendizaje estructural implica aprender el espacio de los gráficos a medida que aumenta el número de variables (nodos), el número de gráficos posibles que se pueden trazar con ellos crece exponencialmente. Por ello, en muchos casos el espacio de búsqueda se limita a diagramas con determinadas características, hay muchos algoritmos de aprendizaje de red específicos en los que se está restringido a ser un árbol, un poliárbol u otras estructuras menos generales. Sin embargo, existen métodos para entrenar redes con una estructura común. Idealmente, trabajar sin restricciones le permitirá construir redes que se ajusten mejor al ejemplo de entrenamiento, sin importar cuán complejas sean las dependencias entre los atributos.
+
+**Hay dos enfoques principales para estudiar redes sin restricciones:**
+
+1.  El primero de esta combina métodos que examinan las relaciones de dependencia entre pares, tripletes u otros subconjuntos de variables para seleccionar la forma en que se relacionan. Examinar estas relaciones requiere establecer un criterio cuantitativo para medir la relación entre variables, y este criterio guía la construcción de la red.
+
+**//COMENTARIO:** Dicha operación crea un enrejado con una topología restringida, sin embargo, el inicio que prontuario la casa es el mismo, un peso de comunicación mutua que cuantifica la ligadura entre las variables.
+
+2.  La otra aproximación constante a la educación de redes consiste en efectuar una exploración guiada por un peso universal de clase. Nótese que en la aproximación antedicho el criterio prontuario es local, se aplica a subconjuntos reducidos de variables, nunca a todo el enrejado.
+
+**//COMENTARIO:** En esta otra aproximación, la importación indeterminada consiste en gestar distintos grafos mediante una operación de exploración y atribuir a cada único de ellos un concierto de peso de clase para adoptar qué grafo tener en cada paso.
+
+**Existen muchos algoritmos que siguen esta técnica, definidos a quebrar del potingue de segunda vez elementos:**
+
+-    Algoritmo de exploración
+
+-   Medida universal de ajuste
+
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | VENTAJAS                                                                                                                                                                                                       |
+    +================================================================================================================================================================================================================+
+    | -   Le permiten presentar el problema cualitativa y cuantitativamente al mismo tiempo en un entorno gráfico comprensible.                                                                                      |
+    |                                                                                                                                                                                                                |
+    | -   Puede tratar la pérdida de datos de manera eficiente, lo cual es deseable en la práctica.                                                                                                                  |
+    |                                                                                                                                                                                                                |
+    | -   Le permiten reducir el sobreajuste de datos.                                                                                                                                                               |
+    |                                                                                                                                                                                                                |
+    | -   Le permiten descubrir la estructura causal subyacente en un conjunto de datos.                                                                                                                             |
+    |                                                                                                                                                                                                                |
+    | -   Presentar toda la información en un único formato (probabilístico y gráfico), lo que facilita la interpretación y permite abandonar conclusiones anteriores por injustificadas ante nuevas evidencias.     |
+    +----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+|  APLICACIONES                                                                                                                                                                                                                                                                                         |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Hoy en día, las redes bayesianas encuentran muchas aplicaciones, especialmente cuando la cantidad de datos procesados ​​aumenta rápidamente y, por lo tanto, es necesario procesarlos e interpretarlos de tal manera que se pueda obtener un conocimiento preciso para una adecuada toma de decisiones. |
+| **HYDRIVE:**  Es un sistema que fue desarrollado por los Laboratorios Armstrong de la Fuerza Aérea de EE. UU. para simular el funcionamiento del avión F-15.                                                                                                                                          |
+| **ANDES:** Es un sistema que brinda un apoyo dinámico cuando un estudiante se atasca y no sabe cómo resolver el problema.                                                                                                                                                                             |
+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| *Para que nos sirve aprender las redes bayesianas                                                                                                                                                                        |
+| en BIOMEDICINA*                                                                                                                                                                                                          |
++==========================================================================================================================================================================================================================+
+| -   Pronóstico de supervivencia del cáncer de mama.                                                                                                                                                                      |
+|                                                                                                                                                                                                                          |
+| -   Multiclasificador de dos niveles para la supervivencia en la unidad de cuidados intensivos (UCI).                                                                                                                    |
+|                                                                                                                                                                                                                          |
+| -   Conglomerado geográfico de incidencia de cáncer.                                                                                                                                                                     |
+|                                                                                                                                                                                                                          |
+| -   Predicción de la estructura secundaria de proteínas.                                                                                                                                                                 |
+|                                                                                                                                                                                                                          |
+| -   BayesChess: Un programa de ajedrez capaz de adaptar su estrategia al usuario con el que se encuentra y mejorar la función de calificación que controla el proceso de búsqueda en función de la experiencia de juego. |
+|                                                                                                                                                                                                                          |
+| -    investigaciones policiales                                                                                                                                                                                          |
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+##  **Inteligencia Artificial y las redes bayesianas**
+
+Las redes Bayesianas fueron creadas por Judea Pearl y propuso para definir los modelos de probabilidades complejas, siendo una base primordial para la inteligencia artificial y para las ingenierías y las ciencias naturales.
+
+####  **Modelos**
+
+**Modelo de simplificación**
+
+-    Nos permite entender de forma sencilla las variables e interacciones y son útiles para tratar problemas.
+
+**Modelos Probabilístico**
+
+-   Se consideran las variables aleatorias observables que nos permiten desarrollar varios razonamientos aleatorias ocultas un claro ejemplo son:
+
+Ø  Toma de decisiones
+
+Ø  Predicciones
+
+Las redes bayesianas además de ser un sistema que representan el conocimiento incierto a través de las probabilidades tienen:
+
+**Hallazgo**: Ayuda a deternimas un cierto valor de una variable partiendo desde un dato
+
+**Probabilidad priori:** Es una variable o conjunto de variables que coninciden una probabilidad marginal
+
+P(x)
+
+**Probabilidad de posteriori**: Es una variable que es dada a través de la evidencia y su probabilidad condicional es
+
+P (x l e)
+
+**Evidencia:** Se trata de una probabilidad que esta conformado de una variable o subconjunto de la evidencia e , considerando que es una probabilidad condicional
+
+p (x l e)
+
+###  **Redes bayesianas dinámicas**
+
+Se van modificando con el tiempo, recibiendo información del intante anterior y las variables son observables.
+
+Nos muestran el estado de las variables en un lapsus de tiempo
+
+![](images/Imagen1.png){width="544"}
+
+**EJEMPLOS:**
+
+![](images/imagen%202.jpg)
